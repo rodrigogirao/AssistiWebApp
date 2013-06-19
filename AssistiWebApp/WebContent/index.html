@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes"> 
+		<title>Page Title</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+<!-- 		<link rel="stylesheet" href="css/themes/assistiWebApp.min.css" /> -->
+	</head>
+
+<body>
+<div data-role="page" id="feed">
+
+	<div data-role="panel" id="feedPanel">
+		<ul data-role="listview">
+			<li data-role="list-divider">Divis�o da lista</li>
+			<li><a href="#" id="">Op��o 1</a></li>
+			<li>Op��o 2</li>
+			<li>Op��o 3</li>
+			<li>Op��o 4</li>
+		</ul>
+	</div>
+
+	<div data-role="header" data-position="fixed">
+		<h1>Feed de Filmes</h1>
+		<div data-role="controlgroup" data-type="horizontal"class="ui-btn-right">
+			<a href="#outra" data-role="button" >.:</a>
+		</div>
+		
+			<a href="#feedPanel" data-role="button" data-iconshadow="false" class="ui-icon-nodisc" data-icon="bars" data-iconpos="notext" ></a>
+		
+	</div>
+	
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true"> 
+			<li><a href="#outra">Outra</a></li>  
+		</ul>
+		
+	</div>
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" id="tabFeed" data-icon="custom" class="ui-btn-active">Feed</a></li>
+				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
+				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#" id="tabUsuario" data-icon="user">Usu�rio</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
