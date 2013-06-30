@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
 
 import persistencia.PreparaSessao;
 
@@ -88,6 +89,16 @@ public class FilmeDAO {
 		}
 		sessao.close();
 		return filmeCarregado;
+	}
+
+	public static Filme retornarFilme(String idFilme) {
+		long id = Long.parseLong(idFilme);
+		sessao = PreparaSessao.pegarSessao();
+		Criteria criteria = sessao.createCriteria(Filme.class)
+				.add(Restrictions.eq("id", id));
+		Filme filme = (Filme) criteria.uniqueResult();
+		sessao.close();
+		return filme;
 	}
 
 }
