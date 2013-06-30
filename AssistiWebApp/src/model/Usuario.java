@@ -20,9 +20,12 @@ public class Usuario {
 	
 	@Column
 	private String nome;
-	private String login;
 	private String senha;
+	
+	@Column(unique=true)
 	private String email;
+	private String login;
+	
 	
 	@ManyToMany (mappedBy="usuarios")
     Set<Filme> filmes = new HashSet<Filme>();
