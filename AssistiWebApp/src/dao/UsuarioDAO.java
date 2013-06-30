@@ -1,6 +1,6 @@
 package dao;
 
-import java.util.HashSet;
+import java.util.List;
 
 import model.Usuario;
 
@@ -38,13 +38,13 @@ public class UsuarioDAO {
 		}
 	}
 
-	public static HashSet<Usuario> listarTodosOsUsuarios() {
+	public static List<Usuario> listarTodosOsUsuarios() {
 
 		sessao = PreparaSessao.pegarSessao();
 		Criteria criteria = sessao.createCriteria(Usuario.class);
 
 		@SuppressWarnings("unchecked")
-		HashSet<Usuario> usuarios = (HashSet<Usuario>) criteria.list();
+		List<Usuario> usuarios = criteria.list();
 		sessao.close();
 		return usuarios;
 	}

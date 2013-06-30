@@ -1,6 +1,6 @@
 package dao;
 
-import java.util.HashSet;
+import java.util.List;
 
 import model.Filme;
 
@@ -38,13 +38,13 @@ public class FilmeDAO {
 		}
 	}
 
-	public static HashSet<Filme> listarTodosOsFilmes() {
+	public static List<Filme> listarTodosOsFilmes() {
 
 		sessao = PreparaSessao.pegarSessao();
 		Criteria criteria = sessao.createCriteria(Filme.class);
 
 		@SuppressWarnings("unchecked")
-		HashSet<Filme> filmes = (HashSet<Filme>) criteria.list();
+		List<Filme> filmes = (List<Filme>) criteria.list();
 		sessao.close();
 		return filmes;
 	}

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import util.ExcluirJSON;
+
 @XmlRootElement
 @Entity
 public class Usuario {
@@ -26,7 +28,7 @@ public class Usuario {
 	private String email;
 	private String login;
 	
-	
+	@ExcluirJSON
 	@ManyToMany (mappedBy="usuarios")
     Set<Filme> filmes = new HashSet<Filme>();
 	

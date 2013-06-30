@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import util.ExcluirJSON;
+
 @XmlRootElement
 @Entity
 public class Filme {
@@ -32,6 +34,7 @@ public class Filme {
 //	private Set<String> genero;
 //	private Set<Ator> atores;
 	
+	@ExcluirJSON
 	@ManyToMany
 	@JoinTable(name="Filme_Usuario",
 		joinColumns = { @JoinColumn (name="id_filme") },

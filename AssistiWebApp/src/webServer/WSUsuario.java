@@ -26,8 +26,7 @@ public class WSUsuario {
 	@GET
 	@Produces("application/json")
 	public String retornarTodosUsuarios(){
-		@SuppressWarnings("unchecked")
-		List<Usuario> usuarios = (List<Usuario>) UsuarioDAO.listarTodosOsUsuarios();
+		List<Usuario> usuarios = UsuarioDAO.listarTodosOsUsuarios();
 		Gson gson = new GsonBuilder().setExclusionStrategies( new EstrategiaExclusaoJSON() ).create();
    	 	String json = gson.toJson(usuarios);
    	 	return json;

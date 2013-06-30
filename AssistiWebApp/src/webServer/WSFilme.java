@@ -25,8 +25,7 @@ public class WSFilme {
 	@GET
 	@Produces("application/json")
 	public String retornarTodosOsFilmes(){
-		@SuppressWarnings("unchecked")
-		List<Filme> filmes = (List<Filme>) FilmeDAO.listarTodosOsFilmes();
+		List<Filme> filmes = FilmeDAO.listarTodosOsFilmes();
 		Gson gson = new GsonBuilder().setExclusionStrategies( new EstrategiaExclusaoJSON() ).create();
    	 	String json = gson.toJson(filmes);
    	 	return json;
