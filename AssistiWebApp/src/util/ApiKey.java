@@ -1,6 +1,6 @@
-package webServer;
+package util;
 
-public class Server {
+public class ApiKey {
 	
 	private static final String apiKey = "95ba8e4e85f5add6b0de44a9e213ef31";
 
@@ -8,6 +8,4 @@ public class Server {
 		return apiKey;
 	}
 	
-	
-
 }

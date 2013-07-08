@@ -3,10 +3,12 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes"> 
-		<title>Page Title</title>
+		<title>Assisti APP</title>
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+		<script type="text/javascript" src="javascript/usuario.js"></script>
+		<script type="text/javascript" src="javascript/filme.js"></script>
 <!-- 		<link rel="stylesheet" href="css/themes/assistiWebApp.min.css" /> -->
 	</head>
 
@@ -25,17 +27,12 @@
 
 	<div data-role="header" data-position="fixed">
 		<h1>Feed de Filmes</h1>
-		<div data-role="controlgroup" data-type="horizontal"class="ui-btn-right">
-			<a href="#outra" data-role="button" >.:</a>
-		</div>
-		
 			<a href="#feedPanel" data-role="button" data-iconshadow="false" class="ui-icon-nodisc" data-icon="bars" data-iconpos="notext" ></a>
-		
 	</div>
 	
 	<div data-role="content">
-		<ul data-role="listview" data-inset="true"> 
-			<li><a href="#outra">Outra</a></li>  
+		<ul data-role="listview" data-inset="true" id="feedDeFilmes"> 
+			 
 		</ul>
 		
 	</div>
@@ -43,15 +40,51 @@
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
 			<ul>
-				<li><a href="#" id="tabFeed" data-icon="custom" class="ui-btn-active">Feed</a></li>
+				<li><a href="#feed" id="tabFeed" data-icon="custom" class="ui-btn-active">Feed</a></li>
 				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
 				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
-				<li><a href="#" id="tabUsuario" data-icon="user">Usuário</a></li>
+				<li><a href="#usuario" id="tabUsuario" data-icon="user">Usuario</a></li>
 			</ul>
 		</div>
 	</div>
 </div>
 
+<div data-role="page" id="usuario">
+	<div data-role="panel" id="usuarioPanel" data-position="right">
+		<ul data-role="listview">
+			<li data-role="list-divider">Minha Conta</li>
+			<li  data-icon="false"><a href="#" id="cadastrarUsuario">Cadastrar Novo</a></li>
+			<li  data-icon="false"><a href="#" id="">Editar Informacoes</a></li>
+			<li  data-icon="false"><a href="#" id="listarUsuarios">Listar</a></li>
+			<li  data-icon="false"><a href="#" id="">Excluir</a></li>
+		</ul>
+	</div>
+	
+	<div data-role="header" data-position="fixed">
+		<h1>Usuario</h1>
+			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
+			<a href="#usuarioPanel" data-role="button" class="ui-btn-right" data-iconshadow="false" class="ui-icon-nodisc" data-icon="bars" data-iconpos="notext" ></a>	
+	</div>
+	
+	<div data-role="content">	
+		<ul data-role="listview" id="listaDeUsuarios">
+			<li data-role="list-divider">Usuarios Cadastrados</li>
+			
+		</ul>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#feed" id="tabFeed" data-icon="custom">Feed</a></li>
+				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
+				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
 
 </body>
 </html>
