@@ -1,5 +1,5 @@
 $(function() {
-	var server = "http://192.168.1.105" + ":8080/AssistiWebApp/servico/usuario";
+	var server = "http://localhost" + ":8080/AssistiWebApp/servico/usuario";
 	
 	function cadastrar() {
 		
