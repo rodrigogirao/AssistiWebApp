@@ -43,9 +43,12 @@ public class WSUsuario {
 	}
 	
 	@POST
+	@Produces("text/html")
 	@Consumes("application/json")
-    public void adicionar(Usuario usuario){
-		UsuarioDAO.adicionar(usuario);
+    public String adicionar(Usuario usuario){
+		System.out.println("Cheguei no adicionar usuario"+usuario.getNome());
+		boolean cadastrou = UsuarioDAO.adicionar(usuario);
+		return cadastrou+"";
 	}
 	
 	@DELETE

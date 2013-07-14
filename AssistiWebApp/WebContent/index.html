@@ -11,8 +11,9 @@
 		<script type="text/javascript" src="javascript/filme.js"></script>
 <!-- 		<link rel="stylesheet" href="css/themes/assistiWebApp.min.css" /> -->
 	</head>
-
 <body>
+
+<!-- INÍCIO DA PÁGINA DE FEED DE FILMES -->
 <div data-role="page" id="feed">
 
 	<div data-role="panel" id="feedPanel">
@@ -27,14 +28,14 @@
 
 	<div data-role="header" data-position="fixed">
 		<h1>Feed de Filmes</h1>
-			<a href="#feedPanel" data-role="button" data-iconshadow="false" class="ui-icon-nodisc" data-icon="bars" data-iconpos="notext" ></a>
+		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+			<a href="#feedPanel" data-role="button" data-iconshadow="false" class="ui-icon-nodisc" data-icon="bars" data-iconpos="notext" data-mini="false"></a>
+		</div>	
 	</div>
 	
 	<div data-role="content">
-		<ul data-role="listview" data-inset="true" id="feedDeFilmes"> 
-			 
-		</ul>
-		
+		<ul data-role="listview" data-inset="true" id="feedDeFilmes"> 	 
+		</ul>		
 	</div>
 
 	<div data-role="footer" data-position="fixed">
@@ -49,11 +50,12 @@
 	</div>
 </div>
 
+<!-- INÍCIO DA PÁGINA DE USUÁRIOS -->
 <div data-role="page" id="usuario">
 	<div data-role="panel" id="usuarioPanel" data-position="right">
 		<ul data-role="listview">
 			<li data-role="list-divider">Minha Conta</li>
-			<li  data-icon="false"><a href="#" id="cadastrarUsuario">Cadastrar Novo</a></li>
+			<li  data-icon="false"><a href="#cadastroUsuario">Cadastrar Novo</a></li>
 			<li  data-icon="false"><a href="#" id="">Editar Informacoes</a></li>
 			<li  data-icon="false"><a href="#" id="listarUsuarios">Listar</a></li>
 			<li  data-icon="false"><a href="#" id="">Excluir</a></li>
@@ -68,8 +70,7 @@
 	
 	<div data-role="content">	
 		<ul data-role="listview" id="listaDeUsuarios">
-			<li data-role="list-divider">Usuarios Cadastrados</li>
-			
+			<li data-role="list-divider">Usuarios Cadastrados</li>			
 		</ul>
 	</div>
 	
@@ -83,22 +84,18 @@
 			</ul>
 		</div>
 	</div>
-
 </div>
 
-<div data-role="page" id="descricaoFilme">
-	
+<!-- INÍCIO DA PÁGINA DESCRIÇÃO DE FILME -->
+<div data-role="page" id="descricaoFilme">	
 	<div data-role="header" data-position="fixed">
 		<h1>Descricao</h1>
 			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
 	</div>
 
 	<div data-role="content">
-		
 		<ul data-role="listview" data-inset="true" id="descricao">
-		
 		</ul>
-		
 	</div>
 	
 	<div data-role="footer" data-position="fixed">
@@ -110,6 +107,29 @@
 				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
 			</ul>
 		</div>
+	</div>
+</div>
+
+<div data-role="page" id="cadastroUsuario">
+	<div data-role="header" data-position="fixed">
+		<h1>Cadastrar Usuario</h1>
+			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
+	</div>
+	<div data-role="content">	
+		<label for="nomeUsuario">Nome:</label>
+		<input type="text" name="nomeUsuario" id="nomeUsuario" value="" placeholder="Nome">
+		
+		<label for="emailUsuario">Email:</label>
+		<input type="text" name="emailUsuario" id="emailUsuario" value="" placeholder="Email">
+		
+		<label for="loginUsuario">Login:</label>
+		<input type="text" name="loginUsuario" id="loginUsuario" value="" placeholder="Login">
+		
+		<label for="senhaUsuario">Senha:</label>
+		<input type="password" name="senhaUsuario" id="senhaUsuario" value="" autocomplete="off" placeholder="Senha">
+		
+		<input type="button" value="Cadastrar" id="cadastrarUsuario" data-icon="check" data-theme="b" data-iconpos="right">
+			
 	</div>
 
 </div>
