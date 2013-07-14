@@ -104,5 +104,16 @@ public class UsuarioDAO {
 		
 	}
 
+	public static Usuario retornarUsuarioPorLogin(String login) {
+		
+		sessao = PreparaSessao.pegarSessao();
+		Criteria criteria = sessao.createCriteria(Usuario.class)
+				.add(Restrictions.eq("login", login));
+		Usuario usuario = (Usuario) criteria.uniqueResult();
+		sessao.close();
+		
+		return usuario;
+	}
+
 
 }

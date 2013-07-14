@@ -1,7 +1,7 @@
 $(function(){
 	
-	var server = "http://10.0.22.28" + ":8080/AssistiWebApp/servico/feed";
-	var descricaoFilme = "http://10.0.22.28" + ":8080/AssistiWebApp/servico/feed/filme/";
+	var server = "http://localhost" + ":8080/AssistiWebApp/servico/feed";
+	var descricaoFilme = "http://localhost" + ":8080/AssistiWebApp/servico/feed/filme/";
 	
 	function addFilmeAoHtml(id, titulo, dataLancamento, imagem){
 		var $filme = "<li>" +

@@ -43,8 +43,8 @@ public class WSUsuario {
 	}
 	
 	@POST
-	@Produces("text/html")
 	@Consumes("application/json")
+	@Produces("text/html")
     public String adicionar(Usuario usuario){
 		System.out.println("Cheguei no adicionar usuario"+usuario.getNome());
 		boolean cadastrou = UsuarioDAO.adicionar(usuario);
@@ -63,5 +63,23 @@ public class WSUsuario {
     @Produces("application/json")
 	public Usuario atualizar(Usuario usuario){
 		return UsuarioDAO.atualizar(usuario);
+	}
+	
+	@POST	@Path("/login")
+	@Consumes("application/json")
+	@Produces("text/html")
+    public String logar(Usuario usuario){
+		boolean logou = false;
+		System.out.println("Cheguei no logar: "+(usuario.getLogin()));
+		Usuario usuarioBanco = UsuarioDAO.retornarUsuarioPorLogin(usuario.getLogin());
+		if(usuarioBanco==null){
+			return logou+"";
+		}
+		if(usuarioBanco.getSenha().equals(usuario.getSenha())){
+			logou = true;
+			return logou+"";
+		}else{
+			return logou+"";
+		}
 	}
 }

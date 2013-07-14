@@ -8,10 +8,12 @@ $(function() {
 			url: server +"",
 			data: formUsuarioToJson(),
 			success: function(data, textStatus, jqXHR){
-				if(data===true){
+				console.log("Resposta: "+ data);
+				if(data==="true"){
 					alert('Usuario cadastrado');
+					$.mobile.changePage($('#feed'));
 				}
-				if(data===false){
+				if(data==="false"){
 					alert('Usuario existente');
 				}
 			},
@@ -20,8 +22,31 @@ $(function() {
                 alert('Erro ao cadastrar: ' + textStatus);
 			}
 		});
-//		$.post(server, formUsuarioToJson()).fail(function(){ alert("Erro ao cadastrar");});
 	}
+	
+	function logar() {
+		$.ajax({
+			type:'POST',
+			contentType: 'application/json',
+			url: server +"/login",
+			data: formLoginToJson(),
+			success: function(data, textStatus, jqXHR){
+				console.log("Resposta: "+ data);
+				if(data==="true"){
+					$.mobile.changePage($('#feed'));
+				}
+				if(data==="false"){
+					alert('Login ou senha incorretos');
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+                //$.mobile.dialog.prototype.options.closeBtnText;
+                alert('Erro de conexão: ' + textStatus);
+			}
+		});
+	}
+	
+	
 	
 	function formUsuarioToJson(){
 		return JSON.stringify({
@@ -29,6 +54,13 @@ $(function() {
 			"senha": $('#senhaUsuario').val(),
 			"email": $('#emailUsuario').val(),
 			"login": $('#loginUsuario').val(),
+		});
+	}
+	
+	function formLoginToJson(){
+		return JSON.stringify({
+			"login": $('#login').val(),
+			"senha": $('#senha').val(),
 		});
 	}
 	
@@ -53,6 +85,7 @@ $(function() {
 				});
 	}
 	
-	$("#listarUsuarios").click(carregarUsuarios);
-	$("#cadastrarUsuario").click(cadastrar);
+	$("#listarUsuarios").on('click',carregarUsuarios);
+	$("#cadastrarUsuario").on('click',cadastrar);
+	$("#fazerLogin").on('click',logar);
 });

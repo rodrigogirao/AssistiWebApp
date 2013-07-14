@@ -13,6 +13,24 @@
 	</head>
 <body>
 
+<!-- INÍCO DA PÁGINA DE LOGIN -->
+<div data-role="page" id="paginaLogin">
+	<div data-role="header" data-position="fixed">
+		<h1>Login</h1>
+	</div>
+	<div data-role="content">	
+		<label for="login">Login:</label>
+		<input type="text" name="login" id="login" value="" placeholder="Login">
+		
+		<label for="senha">Senha:</label>
+		<input type="password" name="senha" id="senha" value="" autocomplete="off" placeholder="Senha">
+		
+		<input type="button" value="Entrar" id="fazerLogin" data-icon="check" data-theme="b" data-iconpos="right">
+			
+	</div>
+
+</div>
+
 <!-- INÍCIO DA PÁGINA DE FEED DE FILMES -->
 <div data-role="page" id="feed">
 
@@ -110,6 +128,7 @@
 	</div>
 </div>
 
+<!-- INÍCO DA PÁGINA DE CADASTRAR USUÁRIO -->
 <div data-role="page" id="cadastroUsuario">
 	<div data-role="header" data-position="fixed">
 		<h1>Cadastrar Usuario</h1>
