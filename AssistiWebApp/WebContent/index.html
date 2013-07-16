@@ -36,11 +36,9 @@
 
 	<div data-role="panel" id="feedPanel">
 		<ul data-role="listview">
-			<li data-role="list-divider">Divisão da lista</li>
-			<li><a href="#" id="">Opção 1</a></li>
-			<li>Opção 2</li>
-			<li>Opção 3</li>
-			<li>Opção 4</li>
+			<li data-role="list-divider">BUSCA POR FILMES</li>
+			<li><a href="#filmesCartaz" id="emCartaz">Em cartaz</a></li>
+			<li><a href="#filmesLancamento" id="proximosLancamentos">Proximos Lancamentos</a></li>
 		</ul>
 	</div>
 
@@ -151,6 +149,56 @@
 			
 	</div>
 
+</div>
+
+<!-- Filmes em cartaz -->
+<div data-role="page" id="filmesCartaz">
+	
+	<div data-role="header" data-position="fixed">
+		<h1>Filmes em cartaz</h1>
+			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
+	</div>
+
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true" id="listaDeFilmesEmCartaz">
+		</ul>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#feed" id="tabFeed" data-icon="custom">Feed</a></li>
+				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
+				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- Lançamentos -->
+<div data-role="page" id="filmesLancamento">
+	
+	<div data-role="header" data-position="fixed">
+		<h1>Proximos Lancamentos</h1>
+			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
+	</div>
+
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true" id="listaDeFilmesLancamentos">
+		</ul>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#feed" id="tabFeed" data-icon="custom">Feed</a></li>
+				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
+				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 </body>
