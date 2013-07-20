@@ -77,7 +77,7 @@ public class WSUsuario {
 		}
 		if(usuarioBanco.getSenha().equals(usuario.getSenha())){
 			logou = true;
-			return logou+"";
+			return logou+"-"+usuarioBanco.getId();
 		}else{
 			return logou+"";
 		}

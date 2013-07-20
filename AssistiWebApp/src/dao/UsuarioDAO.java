@@ -98,7 +98,7 @@ public class UsuarioDAO {
 		Criteria criteria = sessao.createCriteria(Usuario.class)
 				.add(Restrictions.eq("id", id));
 		Usuario usuario = (Usuario) criteria.uniqueResult();
-		sessao.close();
+		//sessao.close();
 		
 		return usuario;
 		

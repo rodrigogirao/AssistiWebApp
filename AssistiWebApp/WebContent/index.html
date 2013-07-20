@@ -4,9 +4,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes"> 
 		<title>Assisti APP</title>
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
+		
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+<link rel="stylesheet" href="themes/assistiTema.min.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 		<script type="text/javascript" src="javascript/usuario.js"></script>
 		<script type="text/javascript" src="javascript/filme.js"></script>
 <!-- 		<link rel="stylesheet" href="css/themes/assistiWebApp.min.css" /> -->
@@ -80,8 +82,8 @@
 	
 	<div data-role="header" data-position="fixed">
 		<h1>Usuario</h1>
-			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
-			<a href="#usuarioPanel" data-role="button" class="ui-btn-right" data-iconshadow="false" class="ui-icon-nodisc" data-icon="bars" data-iconpos="notext" ></a>	
+			<a href="#" data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Voltar</a>
+			<a href="#usuarioPanel" data-role="button" class="ui-btn-right" data-iconshadow="false" class="ui-icon-nodisc" data-icon="bars" data-iconpos="notext" data-mini="false"></a>
 	</div>
 	
 	<div data-role="content">	
@@ -106,12 +108,15 @@
 <div data-role="page" id="descricaoFilme">	
 	<div data-role="header" data-position="fixed">
 		<h1>Descricao</h1>
-			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
+			<a href="#" data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Voltar</a>
 	</div>
 
 	<div data-role="content">
 		<ul data-role="listview" data-inset="true" id="descricao">
 		</ul>
+		
+		<a href='#' id='botaoSeguir' data-role='button' data-icon='star' data-iconpos='left' data-inline='true'>Seguir</a>
+		<a href='#' id='botaoParaAssistir' data-role='button' data-icon='plus' data-iconpos='left' data-inline='true'>Para assistir</a>
 	</div>
 	
 	<div data-role="footer" data-position="fixed">
@@ -130,7 +135,7 @@
 <div data-role="page" id="cadastroUsuario">
 	<div data-role="header" data-position="fixed">
 		<h1>Cadastrar Usuario</h1>
-			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
+			<a href="#" data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Voltar</a>
 	</div>
 	<div data-role="content">	
 		<label for="nomeUsuario">Nome:</label>
@@ -156,7 +161,7 @@
 	
 	<div data-role="header" data-position="fixed">
 		<h1>Filmes em cartaz</h1>
-			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
+			<a href="#" data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Voltar</a>
 	</div>
 
 	<div data-role="content">
@@ -181,7 +186,7 @@
 	
 	<div data-role="header" data-position="fixed">
 		<h1>Proximos Lancamentos</h1>
-			<a href="#" data-rel="back" data-role="button" class="ui-btn-left" data-iconshadow="false" class="ui-icon-nodisc" data-icon="back" data-iconpos="notext"></a>
+			<a href="#" data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Voltar</a>
 	</div>
 
 	<div data-role="content">
@@ -199,6 +204,17 @@
 			</ul>
 		</div>
 	</div>
+</div>
+
+<div data-role="dialog" id="dialogo">
+	<div data-role="header">
+	<h1>Teste</h1>
+	</div>
+	
+	<div data-role="content" id="conteudoDoDialogo">
+	
+	</div>
+
 </div>
 
 </body>

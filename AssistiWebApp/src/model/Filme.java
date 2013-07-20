@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,10 +25,10 @@ public class Filme {
 	@Column
 	private String nome;
 	private String sinopse;
-	private Date dataDeLancamento;
-	private Date tempoDoFilme;
+	private String dataDeLancamento;
+	private String tempoDoFilme;
 	private String classificacao;
-	private double pontuacao;
+	private String pontuacao;
 	
 //	private Set<String> genero;
 //	private Set<Ator> atores;
@@ -59,16 +58,16 @@ public class Filme {
 	public void setSinopse(String sinopse) {
 		this.sinopse = sinopse;
 	}
-	public Date getDataDeLancamento() {
+	public String getDataDeLancamento() {
 		return dataDeLancamento;
 	}
-	public void setDataDeLancamento(Date dataDeLancamento) {
+	public void setDataDeLancamento(String dataDeLancamento) {
 		this.dataDeLancamento = dataDeLancamento;
 	}
-	public Date getTempoDoFilme() {
+	public String getTempoDoFilme() {
 		return tempoDoFilme;
 	}
-	public void setTempoDoFilme(Date tempoDoFilme) {
+	public void setTempoDoFilme(String tempoDoFilme) {
 		this.tempoDoFilme = tempoDoFilme;
 	}
 	public String getClassificacao() {
@@ -77,10 +76,10 @@ public class Filme {
 	public void setClassificacao(String classificacao) {
 		this.classificacao = classificacao;
 	}
-	public double getPontuacao() {
+	public String getPontuacao() {
 		return pontuacao;
 	}
-	public void setPontuacao(double pontuacao) {
+	public void setPontuacao(String pontuacao) {
 		this.pontuacao = pontuacao;
 	}
 	public Set<Usuario> getUsuarios() {

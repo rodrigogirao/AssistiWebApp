@@ -1,5 +1,5 @@
 $(function() {
-	var server = "http://localhost" + ":8080/AssistiWebApp/servico/usuario";
+	var server = "http://192.168.1.105" + ":8080/AssistiWebApp/servico/usuario";
 	
 	function cadastrar() {
 		$.ajax({
@@ -10,11 +10,12 @@ $(function() {
 			success: function(data, textStatus, jqXHR){
 				console.log("Resposta: "+ data);
 				if(data==="true"){
-					alert('Usuario cadastrado');
-					$.mobile.changePage($('#feed'));
+					$("#conteudoDoDialogo").text("Usuario cadastrado");
+					$.mobile.changePage($('#dialogo'));
 				}
 				if(data==="false"){
-					alert('Usuario existente');
+					$("#conteudoDoDialogo").text("Usuario existente");
+					$.mobile.changePage($('#dialogo'));
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown){
@@ -32,8 +33,13 @@ $(function() {
 			data: formLoginToJson(),
 			success: function(data, textStatus, jqXHR){
 				console.log("Resposta: "+ data);
-				if(data==="true"){
+				var resposta = data.split("-");
+				console.log("Resposta: "+ resposta[0]);
+				console.log("Resposta: "+ resposta[1]);
+				if(resposta[0]==="true"){
+					window.name = data[1];
 					$.mobile.changePage($('#feed'));
+					
 				}
 				if(data==="false"){
 					alert('Login ou senha incorretos');

@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import model.Filme;
+import model.Usuario;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -99,6 +100,23 @@ public class FilmeDAO {
 		Filme filme = (Filme) criteria.uniqueResult();
 		sessao.close();
 		return filme;
+	}
+	
+	public static List<Filme> retornarFilmesDeUmUsuario(String idUsuario) {
+        sessao = (Session) PreparaSessao.pegarSessao();
+        long id = Long.parseLong(idUsuario);  
+
+        List<Filme> compras =  sessao.createCriteria(Filme.class).createAlias("usuario", "u").add(Restrictions.eq("u.id", id)).list();
+        sessao.close();
+        return compras;
+	}
+	
+	public static void adicionarFilmeAoUsuario(String idFilme, String idUsuario){
+		Filme filme = FilmeDAO.retornarFilme(idFilme);
+        Usuario usuario = UsuarioDAO.retornarUsuario(idUsuario);
+        
+        usuario.getFilmes().add(filme);
+        UsuarioDAO.atualizar(usuario);
 	}
 
 }

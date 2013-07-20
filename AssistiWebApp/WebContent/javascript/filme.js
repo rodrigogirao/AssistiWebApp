@@ -1,9 +1,10 @@
 $(function(){
 	
-	var server = "http://localhost" + ":8080/AssistiWebApp/servico/feed";
-	var descricaoFilme = "http://localhost" + ":8080/AssistiWebApp/servico/feed/filme/";
-	var filmeEmCartaz = "http://localhost" + ":8080/AssistiWebApp/servico/feed/cartaz";
-	var filmeLancamento = "http://localhost" + ":8080/AssistiWebApp/servico/feed/lancamentos";
+	var server = "http://192.168.1.105" + ":8080/AssistiWebApp/servico/feed";
+	var descricaoFilme = "http://192.168.1.105" + ":8080/AssistiWebApp/servico/feed/filme/";
+	var filmeEmCartaz = "http://192.168.1.105" + ":8080/AssistiWebApp/servico/feed/cartaz";
+	var filmeLancamento = "http://192.168.1.105" + ":8080/AssistiWebApp/servico/feed/lancamentos";
+	var adicionarFilmeAoUsuario = "http://192.168.1.105" + ":8080/AssistiWebApp/servico/filme/";
 	
 	function addFilmeAoHtml(id, titulo, dataLancamento, imagem, listaASerColocadoOElemento){
 		var $filme = "<li>" +
@@ -32,8 +33,12 @@ $(function(){
 									"<p class='ui-li-aside'><strong> Popularidade </strong>"+popularidade+"</p>"+
 									"</a>" +
 									"</li>";
+								
+		
+		$("#botaoSeguir").click(onClickSeguirFilme);
 		$("#descricao").append($filmeDescricao);
 		$("#descricao").listview("refresh");
+		$("#botaoSeguir").button("refresh");
 	}
 	
 	
@@ -100,6 +105,23 @@ $(function(){
 		listarDescricaoFilme(id);
 		
 	}
+	
+	function onClickSeguirFilme(){
+		$lastClicked = $(this);
+		console.log("ENTROU NO Onfilmeclick");
+		var id = $lastClicked.children(".idFilme").text();
+		console.log("Ultimo clicado",$lastClicked.text());
+		console.log("ENTROU NO Onfilmeclick e imprimiu id", id);
+		seguirFilme(id);
+	}
+	
+	function seguirFilme(id){
+		$.post(adicionarFilmeAoUsuario+id+'/usuario/'+window.name)
+		.done(
+				$("#botaoSeguir").text("Deixar de Seguir")
+				);
+	}
+	
 	
 	$("#proximosLancamentos").click(listarFilmesProximosLancamentos);
 	$("#emCartaz").click(listarFilmesEmCartaz);
