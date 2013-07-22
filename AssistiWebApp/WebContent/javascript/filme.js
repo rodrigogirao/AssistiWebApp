@@ -37,6 +37,7 @@ $(function(){
 									"</li>";
 		$("#divisaoDaList").append($filmeDescricao);
 		$("#descricao").listview("refresh");
+		saberSeEstaSendoSeguido();
 	}
 	
 	
@@ -137,24 +138,36 @@ $(function(){
 	$("#tabBiblioteca").on("click", listarFilmesDoUsuario);
 	$("#emCartaz").click(listarFilmesEmCartaz);
 	$("#feed").click(listarFilmesDoFeed);
-	$("#botaoSeguir").attr("select", "true");
+	
+	function saberSeEstaSendoSeguido(){
+		$.get(filmeUsuario+"/"+window.name+"/seguindo/"+filmeClicado).done(function(resposta){
+			console.log("RESPOSTA: " + resposta);
+			if(resposta==="true"){
+				$("#botaoSeguir").attr("select", "true");
+				$("#botaoSeguir").buttonMarkup({icon:"minus", theme: "b"});
+				$("#botaoSeguir").find(".ui-btn-text").text("Seguindo");
+			}else{
+				$("#botaoSeguir").attr("select", "false");
+				$("#botaoSeguir").buttonMarkup({icon:"star", theme: "a"});
+				$("#botaoSeguir").find(".ui-btn-text").text("Seguir");
+			}
+		});
+	}
 	$("#botaoSeguir").on("click", function(event){
 		var selected = $(this).attr("select");
 		if(selected==="true"){
-			seguirFilme("true");
+			seguirFilme("false");
 			$(this).attr("select","false");
-			$(this).buttonMarkup({icon:"minus", theme: "b"});
-			$(this).find(".ui-btn-text").text("Seguindo");
-			
+			$(this).buttonMarkup({icon:"star", theme: "a"});
+			$(this).find(".ui-btn-text").text("Seguir");			
 		}
 		else{
-			seguirFilme("false");
+			seguirFilme("true");
 			$(this).attr("select","true");
-			$(this).buttonMarkup({icon:"star", theme: "a"});
-			$(this).find(".ui-btn-text").text("Seguir");
+			$(this).buttonMarkup({icon:"minus", theme: "b"});
+			$(this).find(".ui-btn-text").text("Seguindo");
 		}
 	});
-	listarFilmesDoFeed();
 	
 	$("#feedDeFilmes").on("listviewbeforefilter", function (e, data){
 		var $ul = $( this ),
@@ -195,5 +208,7 @@ $(function(){
             });
         }
     });
+	
+	listarFilmesDoFeed();
 	
 });

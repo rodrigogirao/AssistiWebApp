@@ -1,10 +1,15 @@
 package dao;
 
 import model.Filme_Usuario;
+import model.Usuario;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
+
+import com.sun.xml.internal.ws.encoding.fastinfoset.FastInfosetMIMETypes;
 
 import persistencia.PreparaSessao;
 
@@ -40,6 +45,27 @@ public class FilmeUsuarioDAO {
 			System.out.println(e);
 		}finally{
 			sessao.close();
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	public static Filme_Usuario retornarFilmeUsuario(String idFilme, String idUsuario){
+		String idFilmeUsuario = idFilme+idUsuario;
+		long id = Long.parseLong(idFilmeUsuario);
+		System.out.println("ID: "+id);
+		sessao = (Session) PreparaSessao.pegarSessao();
+		Filme_Usuario filmeUsuario = null;
+		try{
+			Transaction trasaction = sessao.beginTransaction();
+			Criteria criteria = sessao.createCriteria(Filme_Usuario.class)
+					.add(Restrictions.eq("id", id));
+			filmeUsuario = (Filme_Usuario) criteria.uniqueResult();
+			trasaction.commit();			
+		}catch (HibernateException e) {
+			System.out.println(e);
+		}finally{
+			sessao.close();
+			return filmeUsuario;
 		}
 	}
 

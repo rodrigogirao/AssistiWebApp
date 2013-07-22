@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import org.hibernate.exception.ConstraintViolationException;
 
 import model.Filme;
+import model.Filme_Usuario;
 import model.Usuario;
 import util.ApiKey;
 import util.EstrategiaExclusaoJSON;
@@ -120,6 +121,15 @@ public class WSFilme {
 	public void deletarFilmeDoUsuario(@PathParam("idFilme") String idFilme, @PathParam("idUsuario") String idUsuario){
 		FilmeDAO.removerFilmeDoUsuario(idFilme, idUsuario);
 		System.out.println("Filme removido");
+	}
+	@GET @Path("/usuario/{idUsuario}/seguindo/{idFilme}")
+	public String verificarUsuarioSegueFilme(@PathParam("idUsuario") String idUsuario,@PathParam("idFilme") String idFilme){
+		Filme_Usuario filmeUsuario = FilmeUsuarioDAO.retornarFilmeUsuario(idFilme, idUsuario);
+		if (filmeUsuario==null){
+			return "false";
+		}else{
+			return "true";
+		}
 	}
 	
 	
