@@ -5,11 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import util.ExcluirJSON;
@@ -19,12 +16,12 @@ import util.ExcluirJSON;
 public class Filme {
 
 	@Id
-	@GeneratedValue
 	private long id;
 
+	@Column(columnDefinition="text")
+	private String sinopse;
 	@Column
 	private String nome;
-	private String sinopse;
 	private String dataDeLancamento;
 	private String tempoDoFilme;
 	private String classificacao;
@@ -34,11 +31,8 @@ public class Filme {
 //	private Set<Ator> atores;
 	
 	@ExcluirJSON
-	@ManyToMany
-	@JoinTable(name="Filme_Usuario",
-		joinColumns = { @JoinColumn (name="id_filme") },
-		inverseJoinColumns = { @JoinColumn (name="id_usuario")})
-	private Set<Usuario> usuarios = new HashSet<Usuario>();
+	@OneToMany(mappedBy="filme")
+	private Set<Filme_Usuario> filmesUsuarios = new HashSet<Filme_Usuario>();
 	
 	public long getId() {
 		return id;
@@ -82,10 +76,10 @@ public class Filme {
 	public void setPontuacao(String pontuacao) {
 		this.pontuacao = pontuacao;
 	}
-	public Set<Usuario> getUsuarios() {
-		return usuarios;
+	public Set<Filme_Usuario> getFilmesUsuarios() {
+		return filmesUsuarios;
 	}
-	public void setUsuarios(Set<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setFilmesUsuarios(Set<Filme_Usuario> filmesUsuarios) {
+		this.filmesUsuarios = filmesUsuarios;
 	}
 }

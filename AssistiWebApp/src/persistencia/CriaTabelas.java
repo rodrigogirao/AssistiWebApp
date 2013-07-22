@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Filme;
+import model.Filme_Usuario;
 import model.Usuario;
 
 import org.hibernate.SessionFactory;
@@ -50,6 +51,7 @@ public class CriaTabelas
                           
                 classes.add(Filme.class);
                 classes.add(Usuario.class);
+                classes.add(Filme_Usuario.class);
                 
                 return classes;
         }

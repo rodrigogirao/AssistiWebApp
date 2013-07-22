@@ -1,8 +1,10 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Filme;
+import model.Filme_Usuario;
 import model.Usuario;
 
 import org.hibernate.Criteria;
@@ -93,12 +95,18 @@ public class FilmeDAO {
 	}
 
 	public static Filme retornarFilme(String idFilme) {
-		long id = Long.parseLong(idFilme);
-		sessao = PreparaSessao.pegarSessao();
-		Criteria criteria = sessao.createCriteria(Filme.class)
-				.add(Restrictions.eq("id", id));
-		Filme filme = (Filme) criteria.uniqueResult();
-		sessao.close();
+		
+		Filme filme = null;
+		
+		try{
+			long id = Long.parseLong(idFilme);
+			sessao = PreparaSessao.pegarSessao();
+			Criteria criteria = sessao.createCriteria(Filme.class)
+					.add(Restrictions.eq("id", id));
+			filme = (Filme) criteria.uniqueResult();
+		}catch (HibernateException e) {
+		}
+		//sessao.close();
 		return filme;
 	}
 	
@@ -106,17 +114,31 @@ public class FilmeDAO {
         sessao = (Session) PreparaSessao.pegarSessao();
         long id = Long.parseLong(idUsuario);  
 
-        List<Filme> compras =  sessao.createCriteria(Filme.class).createAlias("usuario", "u").add(Restrictions.eq("u.id", id)).list();
+        @SuppressWarnings("unchecked")
+		List<Filme_Usuario> filmesUsuario =  sessao.createCriteria(Filme_Usuario.class).createAlias("usuario", "u").add(Restrictions.eq("u.id", id)).list();
+        List<Filme> filmes = new ArrayList<Filme>();
+        for (Filme_Usuario filmeUsuario : filmesUsuario) {
+			Filme filme = filmeUsuario.getFilme();
+			filmes.add(filme);
+		}
         sessao.close();
-        return compras;
+        return filmes;
 	}
 	
 	public static void adicionarFilmeAoUsuario(String idFilme, String idUsuario){
 		Filme filme = FilmeDAO.retornarFilme(idFilme);
         Usuario usuario = UsuarioDAO.retornarUsuario(idUsuario);
         
-        usuario.getFilmes().add(filme);
-        UsuarioDAO.atualizar(usuario);
+        Filme_Usuario filmeUsuario = new Filme_Usuario();
+        filmeUsuario.setFilme(filme);
+        filmeUsuario.setUsuario(usuario);
+        String idComposto = ""+filme.getId()+""+usuario.getId();
+        filmeUsuario.setId(Long.parseLong(idComposto));
+        FilmeUsuarioDAO.adicionar(filmeUsuario);
 	}
-
+	
+	public static void removerFilmeDoUsuario(String idFilme, String idUsuario){
+		FilmeUsuarioDAO.remover(idFilme+idUsuario);
+	}
+	
 }

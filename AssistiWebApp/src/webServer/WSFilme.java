@@ -12,6 +12,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 import model.Filme;
 import model.Usuario;
 import util.ApiKey;
@@ -23,6 +25,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import dao.FilmeDAO;
+import dao.FilmeUsuarioDAO;
 import dao.UsuarioDAO;
 
 @Path("/filme")
@@ -78,31 +81,47 @@ public class WSFilme {
    	 	return json;
 	}
 	
-	@GET @Path("/{idFilme}/usuario/{idUsuario}")
+	@POST @Path("/{idFilme}/usuario/{idUsuario}")
 	@Produces("application/json")
 	public void adicionarFilmeAoUsuario(@PathParam("idFilme") String idFilme, @PathParam("idUsuario") String idUsuario) throws IOException{
-		Filme filme = FilmeDAO.retornarFilme(idFilme);
-		if(filme == null){
-			RequisicaoHTTP http = new RequisicaoHTTP();
-			String retornoJson = "";
-			
-				retornoJson = http.getUrl(DESCRICAO_FILME+idFilme, ApiKey.getApikey());
-				System.out.println(retornoJson);
-			
-			Gson gson = new GsonBuilder().setExclusionStrategies( new EstrategiaExclusaoJSON() ).create();
-			FilmeAPI filmeAPI = gson.fromJson(retornoJson, FilmeAPI.class);
-			
-			Filme filmeNovo = new Filme();
-			filmeNovo.setId(filmeAPI.getId());
-			filmeNovo.setNome(filmeAPI.getOriginal_title());
-			filmeNovo.setSinopse(filmeAPI.getOverview());
-			filmeNovo.setDataDeLancamento(filmeAPI.getRelease_date());
-			filmeNovo.setPontuacao(filmeAPI.getPopularity());
-			
-			FilmeDAO.adicionar(filmeNovo);
-			
-			System.out.println(filmeAPI);			
+		try{
+			Filme filme = FilmeDAO.retornarFilme(idFilme);
+			if(filme == null){
+				RequisicaoHTTP http = new RequisicaoHTTP();
+				String retornoJson = "";
+				
+					retornoJson = http.getUrl(DESCRICAO_FILME+idFilme, ApiKey.getApikey());
+					System.out.println(retornoJson);
+				
+				Gson gson = new GsonBuilder().setExclusionStrategies( new EstrategiaExclusaoJSON() ).create();
+				FilmeAPI filmeAPI = gson.fromJson(retornoJson, FilmeAPI.class);
+				
+				Filme filmeNovo = new Filme();
+				filmeNovo.setId(filmeAPI.getId());
+				filmeNovo.setNome(filmeAPI.getOriginal_title());
+				filmeNovo.setSinopse(filmeAPI.getOverview());
+				filmeNovo.setDataDeLancamento(filmeAPI.getRelease_date());
+				filmeNovo.setPontuacao(filmeAPI.getPopularity());
+				//SO PRA TESTAR MUDAR DEPOIS
+				filmeNovo.setClassificacao(filmeAPI.getPoster_path());
+				
+				FilmeDAO.adicionar(filmeNovo);
+				
+				System.out.println(filmeAPI);			
+			}
+			FilmeDAO.adicionarFilmeAoUsuario(idFilme, idUsuario);
+			System.out.println("Filme adicionado");
+		}catch (ConstraintViolationException e) {
+			System.out.println("Nada");
 		}
-		FilmeDAO.adicionarFilmeAoUsuario(idFilme, idUsuario);
 	}
+	
+	@DELETE @Path("/{idFilme}/usuario/{idUsuario}")
+	public void deletarFilmeDoUsuario(@PathParam("idFilme") String idFilme, @PathParam("idUsuario") String idUsuario){
+		FilmeDAO.removerFilmeDoUsuario(idFilme, idUsuario);
+		System.out.println("Filme removido");
+	}
+	
+	
+		
 }

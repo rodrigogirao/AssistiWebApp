@@ -4,6 +4,7 @@ public class FilmeAPI {
 
 	private long id;
 	private String backdrop_path;
+	private String poster_path;
 	private String homepage;
 	private String original_title;
 	private String overview;
@@ -51,6 +52,12 @@ public class FilmeAPI {
 	}
 	public void setRelease_date(String release_date) {
 		this.release_date = release_date;
+	}
+	public String getPoster_path() {
+		return poster_path;
+	}
+	public void setPoster_path(String poster_path) {
+		this.poster_path = poster_path;
 	}
 	
 	

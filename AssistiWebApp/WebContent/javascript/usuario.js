@@ -1,5 +1,5 @@
 $(function() {
-	var server = "http://192.168.1.105" + ":8080/AssistiWebApp/servico/usuario";
+	var server = "http://localhost" + ":8080/AssistiWebApp/servico/usuario";
 	
 	function cadastrar() {
 		$.ajax({
@@ -37,9 +37,8 @@ $(function() {
 				console.log("Resposta: "+ resposta[0]);
 				console.log("Resposta: "+ resposta[1]);
 				if(resposta[0]==="true"){
-					window.name = data[1];
-					$.mobile.changePage($('#feed'));
-					
+					window.name = resposta[1];
+					$.mobile.changePage($('#feed'));//Mudar para carregar tudo do feed
 				}
 				if(data==="false"){
 					alert('Login ou senha incorretos');

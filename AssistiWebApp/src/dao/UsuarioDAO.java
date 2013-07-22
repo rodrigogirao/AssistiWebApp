@@ -92,14 +92,18 @@ public class UsuarioDAO {
 	}
 
 	public static Usuario retornarUsuario(String idUsuario) {
-		long id = Long.parseLong(idUsuario);
-		
-		sessao = PreparaSessao.pegarSessao();
-		Criteria criteria = sessao.createCriteria(Usuario.class)
-				.add(Restrictions.eq("id", id));
-		Usuario usuario = (Usuario) criteria.uniqueResult();
-		//sessao.close();
-		
+		Usuario usuario = null;
+		try{
+			long id = Long.parseLong(idUsuario);
+			
+			sessao = PreparaSessao.pegarSessao();
+			Criteria criteria = sessao.createCriteria(Usuario.class)
+					.add(Restrictions.eq("id", id));
+			usuario = (Usuario) criteria.uniqueResult();
+			//sessao.close();
+		}catch (HibernateException e) {
+			// TODO: handle exception
+		}
 		return usuario;
 		
 	}

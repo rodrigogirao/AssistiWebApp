@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import util.ExcluirJSON;
@@ -29,8 +29,8 @@ public class Usuario {
 	private String login;
 	
 	@ExcluirJSON
-	@ManyToMany (mappedBy="usuarios")
-    Set<Filme> filmes = new HashSet<Filme>();
+	@OneToMany(mappedBy="usuario")
+	private Set<Filme_Usuario> filmesUsuarios = new HashSet<Filme_Usuario>();
 	
 	public long getId() {
 		return id;
@@ -62,10 +62,10 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Set<Filme> getFilmes() {
-		return filmes;
+	public Set<Filme_Usuario> getFilmesUsuarios() {
+		return filmesUsuarios;
 	}
-	public void setFilmes(Set<Filme> filmes) {
-		this.filmes = filmes;
+	public void setFilmesUsuarios(Set<Filme_Usuario> filmesUsuarios) {
+		this.filmesUsuarios = filmesUsuarios;
 	}
 }
