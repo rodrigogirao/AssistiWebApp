@@ -91,7 +91,7 @@ public class WSFilme {
 				RequisicaoHTTP http = new RequisicaoHTTP();
 				String retornoJson = "";
 				
-					retornoJson = http.getUrl(DESCRICAO_FILME+idFilme, ApiKey.getApikey());
+					retornoJson = http.getUrl(DESCRICAO_FILME+idFilme, ApiKey.getApikey()+"&language=pt");
 					System.out.println(retornoJson);
 				
 				Gson gson = new GsonBuilder().setExclusionStrategies( new EstrategiaExclusaoJSON() ).create();

@@ -31,7 +31,7 @@ public class WSFeed {
 	@Produces("application/json")
 	public String listarFilmesPopulares() throws IOException{
 		RequisicaoHTTP http = new RequisicaoHTTP();
-        String retornoJson = http.getUrl(FILMES_POPULARES, ApiKey.getApikey());
+        String retornoJson = http.getUrl(FILMES_POPULARES, ApiKey.getApikey()+"&language=pt");
  
         return retornoJson;
 	}
@@ -42,7 +42,7 @@ public class WSFeed {
 	public String retornarFilmePorId(@PathParam("idFilme") String idFilme) throws IOException{
 		
 		RequisicaoHTTP http = new RequisicaoHTTP();
-		String retornoJson = http.getUrl(DESCRICAO_FILME+idFilme, ApiKey.getApikey());
+		String retornoJson = http.getUrl(DESCRICAO_FILME+idFilme, ApiKey.getApikey()+"&language=pt");
 		
 		System.out.println(retornoJson);
 		
@@ -54,7 +54,7 @@ public class WSFeed {
 	@Produces("application/json")
 	public String listarFilmesEmCartaz() throws IOException{
 		RequisicaoHTTP http = new RequisicaoHTTP();
-		String retornoJson = http.getUrl(FILMES_EM_CARTAZ, ApiKey.getApikey());
+		String retornoJson = http.getUrl(FILMES_EM_CARTAZ, ApiKey.getApikey()+"&language=pt");
 				
 		return retornoJson;
 	}
@@ -64,7 +64,7 @@ public class WSFeed {
 	@Produces("application/json")
 	public String listarFilmesProximosLancamentos() throws IOException{
 		RequisicaoHTTP http = new RequisicaoHTTP();
-		String retornoJson = http.getUrl(PROXIMOS_LANCAMENTOS, ApiKey.getApikey());
+		String retornoJson = http.getUrl(PROXIMOS_LANCAMENTOS, ApiKey.getApikey()+"&language=pt");
 		
 		return retornoJson;
 	}
@@ -74,7 +74,7 @@ public class WSFeed {
 	@Produces("application/json")
 	public String pesquisarPorFilme(@PathParam("pesquisa") String pesquisa) throws IOException{
 		RequisicaoHTTP http = new RequisicaoHTTP();
-        String retornoJson = http.getUrl(PESQUISAR_NOME_FILME, ApiKey.getApikey()+"&query="+pesquisa);
+        String retornoJson = http.getUrl(PESQUISAR_NOME_FILME, ApiKey.getApikey()+"&query="+pesquisa+"&language=pt");
         return retornoJson;
 	}
 }

@@ -27,9 +27,9 @@
 		<label for="senha">Senha:</label>
 		<input type="password" name="senha" id="senha" value="" autocomplete="off" placeholder="Senha">
 		
-		<input type="button" value="Entrar" id="fazerLogin" data-icon="check" data-theme="b" data-iconpos="right">
+		<input type="button" value="Entrar" id="fazerLogin" data-icon="check" data-theme="a" data-iconpos="right">
 		
-		<a href="#cadastroUsuario" data-role="button" data-iconshadow="false" class="ui-icon-nodisc" data-icon="check" data-mini="false">Cadastrar</a>
+		<a href="#cadastroUsuario" data-role="button" data-iconshadow="false" data-theme="a" class="ui-icon-nodisc" data-icon="plus" data-iconpos="right">Cadastrar</a>
 		
 			
 	</div>
@@ -41,7 +41,7 @@
 
 	<div data-role="panel" id="feedPanel">
 		<ul data-role="listview">
-			<li data-role="list-divider">BUSCA POR FILMES</li>
+			<li data-role="list-divider" data-theme="a">BUSCA POR FILMES</li>
 			<li><a href="#filmesCartaz" id="emCartaz">Em cartaz</a></li>
 			<li><a href="#filmesLancamento" id="proximosLancamentos">Proximos Lancamentos</a></li>
 		</ul>
@@ -100,7 +100,7 @@
 			<ul>
 				<li><a href="#feed" id="tabFeed" data-icon="custom">Feed</a></li>
 				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
-				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#filmesSeguindo" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
 				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
 			</ul>
 		</div>
@@ -119,16 +119,15 @@
 			<img alt="" src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185/b9OVFl48ZV2oTLzACSwBpNrCUhJ.jpg"></img>
 		</div>
 		<ul data-role="listview" data-inset="true" id="descricao">
-			<li data-role='list-divider' class="ui-btn-right" data-theme="a">
-				<h6> texto</h6>
+			<li data-role='list-divider' class="ui-btn-right" data-theme="a" id="nomeFilme">
+				<h6>Sobre o Filme</h6>
 					<span class="ui-li-aside" >
 					<a href='' id='botaoSeguir' data-role='button' data-mini="true" data-iconpos='left' data-inline='true'></a>
 					</span>
 			</li>
-			<div id="divisaoDaList">
-				
-			</div>
 		</ul>
+		<fieldset id="divisaoDaList">
+		</fieldset>
 		
 		<a href='#' id='botaoParaAssistir' data-role='button' data-icon='plus' data-mini="true" data-iconpos='left' data-inline='true'>Para assistir</a>
 	</div>
@@ -138,7 +137,7 @@
 			<ul>
 				<li><a href="#feed" id="tabFeed" data-icon="custom">Feed</a></li>
 				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
-				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#filmesSeguindo" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
 				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
 			</ul>
 		</div>
@@ -164,7 +163,7 @@
 		<label for="senhaUsuario">Senha:</label>
 		<input type="password" name="senhaUsuario" id="senhaUsuario" value="" autocomplete="off" placeholder="Senha">
 		
-		<input type="button" value="Cadastrar" id="cadastrarUsuario" data-icon="check" data-theme="b" data-iconpos="right">
+		<input type="button" value="Finalizar Cadastro" data-theme="a" id="cadastrarUsuario" data-icon="plus" data-theme="b" data-iconpos="right">
 			
 	</div>
 
@@ -188,7 +187,7 @@
 			<ul>
 				<li><a href="#feed" id="tabFeed" data-icon="custom">Feed</a></li>
 				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
-				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#filmesSeguindo" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
 				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
 			</ul>
 		</div>
@@ -213,20 +212,20 @@
 			<ul>
 				<li><a href="#feed" id="tabFeed" data-icon="custom">Feed</a></li>
 				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
-				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#filmesSeguindo" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
 				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
 			</ul>
 		</div>
 	</div>
 </div>
 
+<!-- Dialogo -->
 <div data-role="dialog" id="dialogo">
 	<div data-role="header">
-	<h1>Teste</h1>
+	<h1>Cadastro</h1>
 	</div>
-	
 	<div data-role="content" id="conteudoDoDialogo">
-	
+		
 	</div>
 
 </div>
@@ -250,7 +249,7 @@
 			<ul>
 				<li><a href="#feed" id="tabFeed" data-icon="custom">Feed</a></li>
 				<li><a href="#" id="tabParaAssistir" data-icon="custon">Para Assistir</a></li>
-				<li><a href="#" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
+				<li><a href="#filmesSeguindo" id="tabBiblioteca" data-icon="custom" >Biblioteca</a></li>
 				<li><a href="#usuario" id="tabUsuario" data-icon="user" class="ui-btn-active">Usuario</a></li>
 			</ul>
 		</div>

@@ -1,12 +1,13 @@
 $(function(){
-	var server = "http://localhost" + ":8080/AssistiWebApp/servico/feed";
-	var descricaoFilme = "http://localhost" + ":8080/AssistiWebApp/servico/feed/filme/";
-	var filmeEmCartaz = "http://localhost" + ":8080/AssistiWebApp/servico/feed/cartaz";
-	var filmeLancamento = "http://localhost" + ":8080/AssistiWebApp/servico/feed/lancamentos";
-	var adicionarFilmeAoUsuario = "http://localhost" + ":8080/AssistiWebApp/servico/filme/";
-	var removerFilmeDoUsuario = "http://localhost" + ":8080/AssistiWebApp/servico/filme/";
-	var filmeUsuario = "http://localhost" + ":8080/AssistiWebApp/servico/filme/usuario";
-	var pesquisarFilme = "http://localhost" + ":8080/AssistiWebApp/servico/feed/pesquisa/";
+	var host = "http://localhost";
+	var server = host + ":8080/AssistiWebApp/servico/feed";
+	var descricaoFilme = host + ":8080/AssistiWebApp/servico/feed/filme/";
+	var filmeEmCartaz = host + ":8080/AssistiWebApp/servico/feed/cartaz";
+	var filmeLancamento = host + ":8080/AssistiWebApp/servico/feed/lancamentos";
+	var adicionarFilmeAoUsuario = host + ":8080/AssistiWebApp/servico/filme/";
+	var removerFilmeDoUsuario = host + ":8080/AssistiWebApp/servico/filme/";
+	var filmeUsuario = host + ":8080/AssistiWebApp/servico/filme/usuario";
+	var pesquisarFilme = host + ":8080/AssistiWebApp/servico/feed/pesquisa/";
 	
 	var filmeClicado;
 	
@@ -16,7 +17,7 @@ $(function(){
 						"<div class='idFilme'>" + id + "</div>" +
 							"<img src='http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92"+imagem+"'>"+
 							"<h2 >"+titulo+"</h2>"+
-							"<p >Lancamento "+dataLancamento+"</p>"+
+							"<b><p>Lancamento: </b>"+dataLancamento+"</p>"+
 						"</a>" +
 					"</li>";
 		
@@ -26,15 +27,23 @@ $(function(){
 		$(".idFilme").hide();
 	}
 	
-	function addDescricaoFilmeAoHtml(id, titulo, descricao, link, lancamento, popularidade){
-		var $filmeDescricao = 
-									"<li id="+id+">" +
-									"<h2>"+titulo+"</h2>"+
-									"<p><strong> Site do Filme "+link+"</strong></p>"+
-									"<p>Descricao "+descricao+"</p>"+
-									"<p> Lancamento"+lancamento+"</p>"+
-									"<p class='ui-li-aside'><strong> Popularidade </strong>"+popularidade+"</p>"+
-									"</li>";
+	function addDescricaoFilmeAoHtml(id, titulo, tituloOriginal, descricao, link, lancamento, popularidade){
+			var $filmeDescricao = "<h3>"+titulo+"</h3>"+
+									"<h5>Titulo Original: "+tituloOriginal+"</h5>"+
+									"<p><b>Sinopse</b></p>"+
+									"<hr noshade='noshade' />";
+									if(descricao==null){
+										$filmeDescricao += "<p>Sem sinopse em portugues</p>";
+									}else{
+										$filmeDescricao += "<p>"+descricao+"</p>";
+									}
+									if(link==null){
+										$filmeDescricao += "<p><strong> Site do Filme: Nao possui</strong></p>";
+									}else{
+										$filmeDescricao += "<p><strong> Site do Filme: "+link+"</strong></p>";
+									}
+									$filmeDescricao += "<p><b>Lancamento: </b>"+lancamento+"</p>"+
+									"<p class='ui-li-aside'><strong> Popularidade </strong>"+popularidade+"</p>";
 		$("#divisaoDaList").append($filmeDescricao);
 		$("#descricao").listview("refresh");
 		saberSeEstaSendoSeguido();
@@ -50,7 +59,7 @@ $(function(){
 					for ( var filme = 0; filme < resultado.length; filme++) {
 						console.log("ENTROU NO FOR", filme);
 						addFilmeAoHtml( resultado[filme].id,
-								resultado[filme].original_title, resultado[filme].release_date,
+								resultado[filme].title, resultado[filme].release_date,
 								resultado[filme].poster_path, "#feedDeFilmes");
 					}
 				});
@@ -63,7 +72,7 @@ $(function(){
 				console.log("resultado 2: " ,resultado);
 				$("#divisaoDaList").empty();
 					
-					addDescricaoFilmeAoHtml(resultado.id, resultado.original_title,
+					addDescricaoFilmeAoHtml(resultado.id, resultado.title, resultado.original_title,
 							resultado.overview, resultado.homepage,
 							resultado.release_date, resultado.popularity);
 			});
@@ -79,7 +88,7 @@ $(function(){
 					var resultado = resposta.results;
 					for(var filme = 0; filme < resultado.length; filme++){
 						addFilmeAoHtml(resultado[filme].id,
-								resultado[filme].original_title, resultado[filme].release_date,
+								resultado[filme].title, resultado[filme].release_date,
 								resultado[filme].poster_path, "#listaDeFilmesEmCartaz");
 					}
 				});
@@ -92,7 +101,7 @@ $(function(){
 					var resultado = resposta.results;
 					for(var filme = 0; filme < resultado.length; filme++){
 						addFilmeAoHtml(resultado[filme].id,
-								resultado[filme].original_title, resultado[filme].release_date,
+								resultado[filme].title, resultado[filme].release_date,
 								resultado[filme].poster_path, "#listaDeFilmesLancamentos");
 					}
 				});

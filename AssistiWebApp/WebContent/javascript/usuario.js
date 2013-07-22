@@ -1,5 +1,6 @@
 $(function() {
-	var server = "http://localhost" + ":8080/AssistiWebApp/servico/usuario";
+	var host = "http://localhost";
+	var server = host + ":8080/AssistiWebApp/servico/usuario";
 	
 	function cadastrar() {
 		$.ajax({
@@ -11,6 +12,7 @@ $(function() {
 				console.log("Resposta: "+ data);
 				if(data==="true"){
 					$("#conteudoDoDialogo").text("Usuario cadastrado");
+					$("#conteudoDoDialogo").append("<a href='#paginaLogin' data-role='button' data-iconshadow='false' data-theme='a' class='ui-icon-nodisc' data-icon='check' data-mini='true' data-iconpos='right'>Ir ao login</a>");
 					$.mobile.changePage($('#dialogo'));
 				}
 				if(data==="false"){
