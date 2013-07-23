@@ -1,10 +1,10 @@
 $(function(){
-	var host = "http://rolelinux.cloudapp.net";
+	var host = "http://localhost:8080";
 	var server = host + "/AssistiWebApp/servico/feed";
 	var descricaoFilme = host + "/AssistiWebApp/servico/feed/filme/";
 	var filmeEmCartaz = host + "/AssistiWebApp/servico/feed/cartaz";
 	var filmeLancamento = host + "/AssistiWebApp/servico/feed/lancamentos";
-	var verificarFilmeExiste = host + "/AssistiWebApp/servico/filme/existe/"
+	var verificarFilmeExiste = host + "/AssistiWebApp/servico/filme/existe/";
 	var adicionarFilmeAoUsuario = host + "/AssistiWebApp/servico/filme/";
 	var removerFilmeDoUsuario = host + "/AssistiWebApp/servico/filme/";
 	var filmeUsuario = host + "/AssistiWebApp/servico/filme/usuario";
@@ -28,22 +28,25 @@ $(function(){
 		$(".idFilme").hide();
 	}
 	
-	function addDescricaoFilmeAoHtml(id, titulo, tituloOriginal, descricao, link, lancamento, popularidade){
+	function addDescricaoFilmeAoHtml(id, titulo, tituloOriginal, descricao, link, lancamento, popularidade,caminhoImagen){
 			var linkpequeno;
 			var linkmedio;
 			var linkgrande;
 			$.get(verificarFilmeExiste+id).done(function(resposta){
-				console.log("RESPOSTA: " + resposta);
+				console.log("RESPOSTA VERIFICAEXISTE: " + resposta);
 				if(resposta==="true"){
+					console.log("ENTROU NO TRUE");
 					linkpequeno = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/pequeno";
 					linkmedio = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/medio";
 					linkgrande = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/grande";
 				}else{
+					console.log("ENTROU NO ELSE");
 					linkpequeno = "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92";
 					linkmedio = "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500";
 					linkgrande = "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/original";
 				}
-			});
+
+				console.log("LINK PEQUENO: "+linkpequeno);
 
 			var $filmeDescricao = "<h3>"+titulo+"</h3>"+
 									"<h5>Titulo Original: "+tituloOriginal+"</h5>"+
@@ -61,12 +64,15 @@ $(function(){
 									}
 									$filmeDescricao += "<p><b>Lancamento: </b>"+lancamento+"</p>"+
 									"<p class='ui-li-aside'><strong> Popularidade </strong>"+popularidade+"</p>";
-									$filmeDescricao += "<h3>Imagem: </h3> <a href='"+linkpequeno+"'> Pequena</a>" +
-														"<a href='"+linkmedio+"'> Media</a>" +
-														"<a href='"+linkgrande+"'> Grande</a>";
+									$filmeDescricao += "<h3>Imagem: </h3> <a href='"+linkpequeno+caminhoImagen+"'> Pequena</a> " +
+														" <a href='"+linkmedio+caminhoImagen+"'> Media</a> " +
+														" <a href='"+linkgrande+caminhoImagen+"'> Grande</a> ";
 		$("#divisaoDaList").append($filmeDescricao);
 		$("#descricao").listview("refresh");
 		saberSeEstaSendoSeguido();
+			});
+
+			
 	}
 	
 	
@@ -94,7 +100,7 @@ $(function(){
 					
 					addDescricaoFilmeAoHtml(resultado.id, resultado.title, resultado.original_title,
 							resultado.overview, resultado.homepage,
-							resultado.release_date, resultado.popularity);
+							resultado.release_date, resultado.popularity, resultado.backdrop_path);
 			});
 	}
 	
@@ -170,7 +176,7 @@ $(function(){
 	
 	function saberSeEstaSendoSeguido(){
 		$.get(filmeUsuario+"/"+window.name+"/seguindo/"+filmeClicado).done(function(resposta){
-			console.log("RESPOSTA: " + resposta);
+			console.log("RESPOSTA SABERSEESTASEGUINDO: " + resposta);
 			if(resposta==="true"){
 				$("#botaoSeguir").attr("select", "true");
 				$("#botaoSeguir").buttonMarkup({icon:"minus", theme: "b"});
