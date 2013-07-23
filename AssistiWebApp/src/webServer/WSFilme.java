@@ -114,12 +114,12 @@ public class WSFilme {
 				
 				Blob blob = new Blob();
 				
-				String caminho = filmeAPI.getPoster_path().substring(0);
+				String caminho = filmeAPI.getPoster_path().substring(1);
 				System.out.println(caminho);
 				
-				//blob.upload("pequeno", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/", caminho);
-				//blob.upload("medio", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500/", caminho);
-				//blob.upload("grande", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/original/", caminho);
+				blob.upload("pequeno", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/", caminho);
+				blob.upload("medio", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500/", caminho);
+				blob.upload("grande", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/original/", caminho);
 				
 				System.out.println(filmeAPI);
 			}
@@ -139,6 +139,16 @@ public class WSFilme {
 	public String verificarUsuarioSegueFilme(@PathParam("idUsuario") String idUsuario,@PathParam("idFilme") String idFilme){
 		Filme_Usuario filmeUsuario = FilmeUsuarioDAO.retornarFilmeUsuario(idFilme, idUsuario);
 		if (filmeUsuario==null){
+			return "false";
+		}else{
+			return "true";
+		}
+	}
+	
+	@GET @Path("/existe/{idFilme}")
+	public String verificarFilmeExiste(@PathParam("idFilme") String idFilme){
+		Filme filme = FilmeDAO.retornarFilme(idFilme);
+		if (filme==null){
 			return "false";
 		}else{
 			return "true";

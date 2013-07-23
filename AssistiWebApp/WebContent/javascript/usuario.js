@@ -1,6 +1,6 @@
 $(function() {
-	var host = "http://localhost";
-	var server = host + ":8080/AssistiWebApp/servico/usuario";
+	var host = "http://rolelinux.cloudapp.net";
+	var server = host + "/AssistiWebApp/servico/usuario";
 	
 	function cadastrar() {
 		$.ajax({

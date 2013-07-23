@@ -4,6 +4,7 @@ $(function(){
 	var descricaoFilme = host + "/AssistiWebApp/servico/feed/filme/";
 	var filmeEmCartaz = host + "/AssistiWebApp/servico/feed/cartaz";
 	var filmeLancamento = host + "/AssistiWebApp/servico/feed/lancamentos";
+	var verificarFilmeExiste = host + "/AssistiWebApp/servico/filme/existe/"
 	var adicionarFilmeAoUsuario = host + "/AssistiWebApp/servico/filme/";
 	var removerFilmeDoUsuario = host + "/AssistiWebApp/servico/filme/";
 	var filmeUsuario = host + "/AssistiWebApp/servico/filme/usuario";
@@ -31,7 +32,7 @@ $(function(){
 			var linkpequeno;
 			var linkmedio;
 			var linkgrande;
-			$.get(filmeUsuario+"/"+window.name+"/seguindo/"+filmeClicado).done(function(resposta){
+			$.get(verificarFilmeExiste+id).done(function(resposta){
 				console.log("RESPOSTA: " + resposta);
 				if(resposta==="true"){
 					linkpequeno = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/pequeno";
