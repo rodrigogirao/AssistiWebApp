@@ -1,6 +1,8 @@
 package webServer;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -18,12 +20,14 @@ import model.Filme;
 import model.Filme_Usuario;
 import model.Usuario;
 import util.ApiKey;
+import util.Blob;
 import util.EstrategiaExclusaoJSON;
 import util.FilmeAPI;
 import util.RequisicaoHTTP;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.microsoft.windowsazure.services.core.storage.StorageException;
 
 import dao.FilmeDAO;
 import dao.FilmeUsuarioDAO;
@@ -84,7 +88,7 @@ public class WSFilme {
 	
 	@POST @Path("/{idFilme}/usuario/{idUsuario}")
 	@Produces("application/json")
-	public void adicionarFilmeAoUsuario(@PathParam("idFilme") String idFilme, @PathParam("idUsuario") String idUsuario) throws IOException{
+	public void adicionarFilmeAoUsuario(@PathParam("idFilme") String idFilme, @PathParam("idUsuario") String idUsuario) throws IOException, InvalidKeyException, URISyntaxException, StorageException{
 		try{
 			Filme filme = FilmeDAO.retornarFilme(idFilme);
 			if(filme == null){
@@ -108,7 +112,16 @@ public class WSFilme {
 				
 				FilmeDAO.adicionar(filmeNovo);
 				
-				System.out.println(filmeAPI);			
+				Blob blob = new Blob();
+				
+				String caminho = filmeAPI.getPoster_path().substring(0);
+				System.out.println(caminho);
+				
+				//blob.upload("pequeno", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/", caminho);
+				//blob.upload("medio", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500/", caminho);
+				//blob.upload("grande", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/original/", caminho);
+				
+				System.out.println(filmeAPI);
 			}
 			FilmeDAO.adicionarFilmeAoUsuario(idFilme, idUsuario);
 			System.out.println("Filme adicionado");

@@ -1,13 +1,13 @@
 $(function(){
-	var host = "http://localhost";
-	var server = host + ":8080/AssistiWebApp/servico/feed";
-	var descricaoFilme = host + ":8080/AssistiWebApp/servico/feed/filme/";
-	var filmeEmCartaz = host + ":8080/AssistiWebApp/servico/feed/cartaz";
-	var filmeLancamento = host + ":8080/AssistiWebApp/servico/feed/lancamentos";
-	var adicionarFilmeAoUsuario = host + ":8080/AssistiWebApp/servico/filme/";
-	var removerFilmeDoUsuario = host + ":8080/AssistiWebApp/servico/filme/";
-	var filmeUsuario = host + ":8080/AssistiWebApp/servico/filme/usuario";
-	var pesquisarFilme = host + ":8080/AssistiWebApp/servico/feed/pesquisa/";
+	var host = "http://rolelinux.cloudapp.net";
+	var server = host + "/AssistiWebApp/servico/feed";
+	var descricaoFilme = host + "/AssistiWebApp/servico/feed/filme/";
+	var filmeEmCartaz = host + "/AssistiWebApp/servico/feed/cartaz";
+	var filmeLancamento = host + "/AssistiWebApp/servico/feed/lancamentos";
+	var adicionarFilmeAoUsuario = host + "/AssistiWebApp/servico/filme/";
+	var removerFilmeDoUsuario = host + "/AssistiWebApp/servico/filme/";
+	var filmeUsuario = host + "/AssistiWebApp/servico/filme/usuario";
+	var pesquisarFilme = host + "/AssistiWebApp/servico/feed/pesquisa/";
 	
 	var filmeClicado;
 	
@@ -28,6 +28,22 @@ $(function(){
 	}
 	
 	function addDescricaoFilmeAoHtml(id, titulo, tituloOriginal, descricao, link, lancamento, popularidade){
+			var linkpequeno;
+			var linkmedio;
+			var linkgrande;
+			$.get(filmeUsuario+"/"+window.name+"/seguindo/"+filmeClicado).done(function(resposta){
+				console.log("RESPOSTA: " + resposta);
+				if(resposta==="true"){
+					linkpequeno = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/pequeno";
+					linkmedio = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/medio";
+					linkgrande = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/grande";
+				}else{
+					linkpequeno = "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92";
+					linkmedio = "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500";
+					linkgrande = "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/original";
+				}
+			});
+
 			var $filmeDescricao = "<h3>"+titulo+"</h3>"+
 									"<h5>Titulo Original: "+tituloOriginal+"</h5>"+
 									"<p><b>Sinopse</b></p>"+
@@ -44,6 +60,9 @@ $(function(){
 									}
 									$filmeDescricao += "<p><b>Lancamento: </b>"+lancamento+"</p>"+
 									"<p class='ui-li-aside'><strong> Popularidade </strong>"+popularidade+"</p>";
+									$filmeDescricao += "<h3>Imagem: </h3> <a href='"+linkpequeno+"'> Pequena</a>" +
+														"<a href='"+linkmedio+"'> Media</a>" +
+														"<a href='"+linkgrande+"'> Grande</a>";
 		$("#divisaoDaList").append($filmeDescricao);
 		$("#descricao").listview("refresh");
 		saberSeEstaSendoSeguido();
