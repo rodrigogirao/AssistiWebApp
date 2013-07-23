@@ -114,7 +114,7 @@ public class WSFilme {
 				
 				Blob blob = new Blob();
 				
-				String caminho = filmeAPI.getPoster_path().substring(1);
+				String caminho = filmeAPI.getBackdrop_path().substring(1);
 				System.out.println(caminho);
 				
 				blob.upload("pequeno", "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/", caminho);

@@ -1,5 +1,5 @@
 $(function(){
-	var host = "http://localhost:8080";
+	var host = "http://rolelinux.cloudapp.net";
 	var server = host + "/AssistiWebApp/servico/feed";
 	var descricaoFilme = host + "/AssistiWebApp/servico/feed/filme/";
 	var filmeEmCartaz = host + "/AssistiWebApp/servico/feed/cartaz";
@@ -36,9 +36,9 @@ $(function(){
 				console.log("RESPOSTA VERIFICAEXISTE: " + resposta);
 				if(resposta==="true"){
 					console.log("ENTROU NO TRUE");
-					linkpequeno = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/pequeno";
-					linkmedio = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/medio";
-					linkgrande = "portalvhdsvzvk00nyjlrxh.blob.core.windows.net/grande";
+					linkpequeno = "http://portalvhdsvzvk00nyjlrxh.blob.core.windows.net/pequeno";
+					linkmedio = "http://portalvhdsvzvk00nyjlrxh.blob.core.windows.net/medio";
+					linkgrande = "http://portalvhdsvzvk00nyjlrxh.blob.core.windows.net/grande";
 				}else{
 					console.log("ENTROU NO ELSE");
 					linkpequeno = "http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92";
